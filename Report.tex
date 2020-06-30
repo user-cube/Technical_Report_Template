@@ -1,0 +1,62 @@
+\input{preamble/static}
+
+\RequirePackage[l2tabu,orthodox]{nag}
+
+\newcommand{\papersizeswitch}[3]{\ifnum\strcmp{\papersize}{#1}=0#2\else#3\fi}
+\papersizeswitch{b5paper}{\def\classfontsize{10pt}}{\def\classfontsize{12pt}}
+
+\documentclass[openany, \classfontsize,\papersize,twoside,showtrims,extrafontsizes]{memoir}
+
+\input{preamble/general}
+\input{preamble/fonts}
+\input{preamble/etc}
+
+
+\begin{document}
+\renewcommand{\chaptername}{Capítulo}
+\renewcommand{\listfigurename}{Índice de Imagens}
+\renewcommand{\listtablename}{Índice de Tabelas}
+\renewcommand{\lstlistlistingname}{Índice de snippets}
+\renewcommand{\contentsname}{Índice}
+\renewcommand{\appendixname}{Anexo}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabela}
+\renewcommand{\lstlistingname}{Snippet}
+\renewcommand{\bibname}{Referências}
+
+
+\newcommand{\SubItem}[1]{
+    {\setlength\itemindent{15pt} \item[-] #1}
+}
+
+\prefrontmatter
+\include{prefrontmatter/titlepage}
+\cleartoevenpage
+\include{prefrontmatter/colophon}
+\clearforchapter
+
+
+\frontmatter
+\include{frontmatter/Summary}
+\clearforchapter
+\tableofcontents
+\clearforchapter
+\listoffigures
+\clearforchapter
+\listoftables
+\clearforchapter
+\lstlistoflistings
+
+\mainmatter
+\include{chapters/Introduction}
+\include{chapters/Conclusion}
+
+
+\appendix
+\include{appendices/Acronyms}
+\include{appendices/Appendix}
+
+\backmatter
+\input{references/references}
+
+\end{document}
